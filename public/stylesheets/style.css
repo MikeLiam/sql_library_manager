@@ -3,6 +3,9 @@ body {
   font: 18px "Garamond", serif;
 }
 
+pre {
+  overflow: auto; }
+
 a {
   color: #019875;
   text-decoration: none;

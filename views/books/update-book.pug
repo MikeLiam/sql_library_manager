@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    h2= title
+    
+    include errors
+    
+    form(action="/books/" + book.id, method="post")
+        include form
+    form(action="/books/" + book.id + "/delete", method="post", onsubmit="return confirm('Do you really want to delete this book?');")
+        include cancel
+        input(type="submit", value="Delete Book")

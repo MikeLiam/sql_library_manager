@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Oops! #{message}
+  p Status: #{error.status} (#{httpStatusCode})
+  pre #{error.stack}
+  a(href="/", class="button") Home
