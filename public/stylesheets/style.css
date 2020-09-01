@@ -6,6 +6,7 @@ body {
 pre {
   overflow: auto; }
 
+
 a {
   color: #019875;
   text-decoration: none;
@@ -24,6 +25,7 @@ a.button, input[type=submit] {
   padding: 10px 14px 12px;
   font-size: 14px;
   border-radius: 2px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
@@ -51,9 +53,10 @@ ul {
   line-height: 1.3em;
 }
 
-h2 {
-  border-top: 2px solid #e7e7e7;
-  padding-top: 20px;
+
+table {
+  margin-top: 20px;
+  width: 100%;
 }
 
 th {
@@ -95,6 +98,25 @@ input[type=text] {
   width: 300px;
 }
 
+input[type=submit].search-submit {
+  margin-left: 10px;
+}
+
 .error {
   color: rgb(236, 15, 15);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-top: 2px solid #e7e7e7;
+}
+.main-nav form {
+  display: flex;
+  align-items: flex-end;
+}
+.nav {
+  display: flex;
+  flex-flow: column;
 }
