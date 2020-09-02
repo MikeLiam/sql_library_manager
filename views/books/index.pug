@@ -5,8 +5,8 @@ block content
         .nav
             h2 Books
             a(href="/books/new", class="button") Create New Book
-        form(action="/search/:query", method="get")
-            input(type="search", id="search-input", class="search-input", placeholder="Search...")
+        form(action="/books/search" , method="get")
+            input(type="search", id="search-input", name="search", class="search-input", placeholder="Search...")
             input(type="submit", id="search-submit", class="button search-submit" value!="&#x1F50D;")
     table
         tr
@@ -24,3 +24,7 @@ block content
                     p= book.genre
                 td
                     p= book.year
+    ul
+        each pageLink in pageLinks
+            li
+                a(href=path + pageLink, name= pageLink, class="button " + (currentPage == pageLink ? "selected" : "adf"))= pageLink

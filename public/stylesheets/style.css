@@ -120,3 +120,12 @@ input[type=submit].search-submit {
   display: flex;
   flex-flow: column;
 }
+
+ul {
+  display: flex;
+  justify-content: center;
+}
+
+ul a.selected {
+  background-color: slategrey;
+}
