@@ -36,6 +36,7 @@ a.button, input[type=submit] {
   font-size: 14px;
   border-radius: 2px;
   margin-right: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 
