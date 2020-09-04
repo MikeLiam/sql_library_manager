@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var routes = require('./routes/index');
 var books = require('./routes/books');
+var search = require('./routes/search')
 // Error handlers
 const errorHandlers = require('./errorHandlers');
 
@@ -24,6 +25,7 @@ app.use('/static', express.static('public'));
 
 app.use('/', routes);
 app.use('/books', books);
+app.use('/search', search)
 // Error handler for error 404 not found page
 app.use(errorHandlers.handleNotFound);
 // Global error handler
