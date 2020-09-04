@@ -55,7 +55,7 @@ router.get('/page/:pagenumber', asyncHandler(async (req, res, next) => {
 
 /* Create a new book form. */
 router.get('/new', (req, res) => {
-  res.render("books/new-book", { book: {}, title: "New Book" });
+  res.render("books/new-book", { book: {}, title: "New Book", action: "Create New Book" });
 });
 
 /* POST create Book. */
