@@ -18,15 +18,19 @@ function asyncHandler(cb){
 }
 
 function prepareForPagination(books,currentPage) {
+
   const limit = books.length;
   const booksPerPage = 5;
   const pageCount = Math.ceil(limit / booksPerPage)
   const pageLinks = Array.from(Array(pageCount), (_, i) => i + 1);
+
   const start = (currentPage -1) * booksPerPage
   const end = (currentPage * booksPerPage) > limit ? limit : (currentPage * booksPerPage)
+
   const currentBooks = [...books.slice(start, end)]
 
   return {currentBooks , pageLinks};
+
 }
 
 /* GET books listing. */
@@ -34,12 +38,18 @@ router.get('/', asyncHandler(async (req, res) => {
   res.redirect(`books/page/1`)
 }));
 
-router.get('/page/:pagenumber', asyncHandler(async (req, res) => {
+router.get('/page/:pagenumber', asyncHandler(async (req, res, next) => {
   const books = await Book.findAll({ order: [[ "title", "ASC" ]] });
-  const currentPage = req.params.pagenumber;
+  const currentPage = parseInt(req.params.pagenumber);
   const {currentBooks, pageLinks} = prepareForPagination(books, currentPage)
 
-  res.render("books/index", { books: currentBooks, title: "Books", pageLinks, currentPage, path: "/books/page/" });
+  if (pageLinks.includes(currentPage)){
+    res.render("books/index", { books: currentBooks, title: "Books", pageLinks, currentPage, path: "/books/page/" });
+  } else {
+      // else create and pass an error with friendly message handleError
+      next(helper.createErrorHelper(404, 
+        ` maybe you have reached the limits!`));
+  }
 }));
 
 
@@ -70,7 +80,20 @@ router.get("/search/:query?", asyncHandler(async (req, res, next) => {
   const query = req.query.search;
   if (query === "") {
     res.redirect('/')
+  } else {
+    res.redirect(`/books/search/${query}/page/1`)
   }
+  
+
+}));
+
+router.get('/search/:query/page', asyncHandler(async (req, res) => {
+  const query = req.params.query;
+  res.redirect(`/books/search/${query}/page/1`)
+}));
+
+router.get('/search/:query/page/:pagenumber', asyncHandler(async (req, res, next) => {
+  const query = req.params.query;
   try {
     const books = await Book.findAll({
       where: {
@@ -84,7 +107,15 @@ router.get("/search/:query?", asyncHandler(async (req, res, next) => {
     });
 
     if(books.length !== 0) {
-      res.redirect(`/books/search/${query}/page/1`)
+      const currentPage = parseInt(req.params.pagenumber);
+      const {currentBooks, pageLinks} = prepareForPagination(books, currentPage)
+      if (pageLinks.includes(currentPage)){
+        res.render("books/index", { books: currentBooks, title: `"${query}" Books`, pageLinks, currentPage, path: `/books/search/${query}/page/` });
+      } else {
+        // else create and pass an error with friendly message handleError
+        next(helper.createErrorHelper(404, 
+          ` maybe you have reached the limits!`));
+      }
     } else {
       // else create and pass an error with friendly message handleError
       next(helper.createErrorHelper(418, 
@@ -93,26 +124,6 @@ router.get("/search/:query?", asyncHandler(async (req, res, next) => {
   } catch (error) {
     throw error; // error caught in the asyncHandler's catch block
   }
-
-}));
-
-router.get('/search/:query/page/:pagenumber', asyncHandler(async (req, res) => {
-  const query = req.params.query;
-  console.log(query)
-  const books = await Book.findAll({
-    where: {
-      [Op.or]: [
-        {title: {[Op.like]: `%${query}%`}},
-        {author: {[Op.like]: `%${query}%`}},
-        {genre: {[Op.like]: `%${query}%`}},
-        {year: {[Op.like]: `%${query}%`}}
-      ]
-    }
-  });
-  const currentPage = req.params.pagenumber;
-  const {currentBooks, pageLinks} = prepareForPagination(books, currentPage)
-
-  res.render("books/index", { books: currentBooks, title: "Books", pageLinks, currentPage, path: `/books/search/${query}/page/` });
 }));
 
 /* GET individual book. */
@@ -124,8 +135,6 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
     if(book) {
       res.render("books/update-book", { book, title: "Update Book", action: "Update Book"});  
     } else {
-      // res.sendStatus(404);
-
       // else create and pass an error with friendly message handleError
       next(helper.createErrorHelper(418, 
         ` book with id: ${req.params.id} has not been added... yet`));
@@ -161,17 +170,8 @@ router.post('/:id', asyncHandler(async (req, res) => {
 
 }));
 
-/* Delete book form. */
-router.get("/:id/delete", asyncHandler(async (req, res) => {
-  const book = await Book.findByPk(req.params.id);
-  if(book) {
-    res.render("books/delete", { book, title: "Delete Book" });
-  } else {
-    res.sendStatus(404);
-  }
-}));
 
-/* Delete individual article. */
+/* Delete book. */
 router.post('/:id/delete', asyncHandler(async (req ,res) => {
   const book = await Book.findByPk(req.params.id);
   if(book) {

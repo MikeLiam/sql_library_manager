@@ -1,10 +1,22 @@
 {
   "name": "sql-library-manager-v1",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "Eighth Treehouse Full Stack Development Techdegree project - Unit 08",
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeLiam/sql_library_manager"
+  },
+  "bugs": {
+    "url": "https://github.com/MikeLiam/static_node_and_express_site/issues"
+  },
+  "homepage": "https://github.com/MikeLiam/sql_library_manager#readme",
+  "author": "MikelIam",
+  "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "debug": "^2.6.9",
@@ -15,5 +27,8 @@
     "sequelize": "^6.3.4",
     "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.0"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

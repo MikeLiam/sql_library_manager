@@ -24,7 +24,7 @@ block content
                     p= book.genre
                 td
                     p= book.year
-    ul
+    ul.pagination
         each pageLink in pageLinks
             li
-                a(href=path + pageLink, name= pageLink, class="button " + (currentPage == pageLink ? "selected" : "adf"))= pageLink
+                a(href=path + pageLink, name= pageLink, class="button " + (currentPage === pageLink ? "selected" : "adf"))= pageLink

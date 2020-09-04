@@ -1,10 +1,14 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title= "National Library Web"
+    //- link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/static/stylesheets/style.css')
+    link(rel='shortcut icon', href='/static/images/library_icon.png', type='image/x-icon')
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
   body
     header
-      h1= "National Library"
+      a(href="/", class="header", title="National Library Home") 
+        img(src="/static/images/library_icon.png", alt="National Library", class="nl-icon")
+        h1= "National Library"
     block content
