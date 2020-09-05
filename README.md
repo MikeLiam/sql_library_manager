@@ -17,7 +17,6 @@ Or delete the book:
 At landing page also you can use a search field to find any book for any info set:
 ![Search book page](https://res.cloudinary.com/da3z5stec/image/upload/v1599243238/Sql%20Library%20Manager/search_book_ozjmxx.png)
 
-The project has been configured to use [heroku](https://www.heroku.com) to deploy the app and have it in a live link.
 > [MikelIam Full Stack Developer](https://sqllibrarymanagersite.herokuapp.com)
 
 ### Style Customization:
