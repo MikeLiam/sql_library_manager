@@ -26,6 +26,7 @@ const handleError = ((err, req, res, next) => {
     const httpStatusCode = http.STATUS_CODES[res.statusCode];
     // Friendly error to log
     console.error(res.statusCode === 404 ? "Pointed at a URL that doesn't exist as a route in the app" : `${httpStatusCode}`);
+    // Options when customizated not found errors or general error
     if (res.statusCode === 404 || res.statusCode === 418 || res.statusCode === 406) {
         res.render('page-not-found',{error, message, httpStatusCode})
     } else {

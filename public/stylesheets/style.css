@@ -13,6 +13,7 @@ body {
   font: 18px "Garamond", serif;
 }
 
+/* Error stack */
 pre {
   overflow: auto; }
 
@@ -110,6 +111,7 @@ input[type=text] {
   width: 300px;
 }
 
+/* Search bar button */
 input[type=submit].search-submit {
   margin-left: 10px;
   margin-bottom: 0px;
@@ -119,12 +121,18 @@ input[type=submit].search-submit {
   color: rgb(236, 15, 15);
 }
 
+/* tittle, create new and search bar  */
 .main-nav {
   display: flex;
   justify-content: space-between;
   align-content: center;
   border-top: 2px solid #e7e7e7;
 }
+
+.main-nav a.button {
+  margin-bottom: 0px;
+}
+
 .main-nav form {
   display: flex;
   align-items: flex-end;
@@ -134,6 +142,7 @@ input[type=submit].search-submit {
   flex-flow: column;
 }
 
+/* pagination */
 ul.pagination {
   display: flex;
   justify-content: center;
@@ -143,6 +152,7 @@ ul a.selected {
   background-color: slategrey;
 }
 
+/* Buttons on delete book page */
 .form-line {
   margin-bottom: 10px;
 }
@@ -153,6 +163,7 @@ ul a.selected {
   align-items: flex-start;
 }
 
+/* Header page */
 a.header {
   display: flex;
   align-items: flex-end;

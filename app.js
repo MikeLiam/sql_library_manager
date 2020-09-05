@@ -1,9 +1,8 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+// Routes
 var routes = require('./routes/index');
 var books = require('./routes/books');
 var search = require('./routes/search')
@@ -22,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Static route to serve the static files in the public folder
 app.use('/static', express.static('public'));
-
+//Routes
 app.use('/', routes);
 app.use('/books', books);
 app.use('/search', search)
