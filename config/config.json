@@ -1,14 +1,14 @@
 {
   "development": {
     "dialect": "sqlite",
-    "storage": "library.db"
+    "storage": "./devDB"
   },
   "test": {
     "dialect": "sqlite",
-    "storage": "test.db"
+    "storage": "./devDB"
   },
   "production": {
-    "dialect": "sqlite",
-    "storage": "production.db"
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres"
   }
 }

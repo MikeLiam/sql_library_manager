@@ -23,12 +23,15 @@
     "express": "^4.16.4",
     "http-errors": "^1.6.3",
     "morgan": "^1.9.1",
+    "pg": "^8.4.1",
+    "pg-hstore": "^2.3.3",
     "pug": "^3.0.0",
     "sequelize": "^6.3.4",
     "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.0"
   },
   "engines": {
-    "node": "12.x"
+    "node": "12.18.0",
+    "npm": "6.14.4"
   }
 }
