@@ -17,7 +17,8 @@ Or delete the book:
 At landing page also you can use a search field to find any book for any info set:
 ![Search book page](https://res.cloudinary.com/da3z5stec/image/upload/v1599243238/Sql%20Library%20Manager/search_book_ozjmxx.png)
 
-> [MikelIam Full Stack Developer](https://sqllibrarymanagersite.herokuapp.com)
+App modificated adding config, migrations and seeders to deploy and live on Heroku with Postgres DataBase.
+> [MikelIam Full Stack Developer](https://sqllibrarymanagermikeliam.herokuapp.com)
 
 ### Style Customization:
 ---
